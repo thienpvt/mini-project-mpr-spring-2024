@@ -1,20 +1,38 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import React, { useEffect, useState } from "react";
+import { SafeAreaView } from "react-native";
+import { StyledComponent } from "nativewind";
+import GameScreen from "./screens/GameScreen";
+import StartGameScreen from "./screens/StartGameScreen";
 
 export default function App() {
+  const [gameOver, setGameOver] = useState(false);
+  const [rowNumber, setRowNumber] = useState<number>();
+  const [columnNumber, setColumnNumber] = useState<number>();
+  const pickedNumberHandler = (chosenRow: any, chosenColumn: any) => {
+    setRowNumber(chosenRow);
+    setColumnNumber(chosenColumn);
+  };
+
+  const gameOverHandler = (numOfRounds: number) => {
+    setColumnNumber(undefined);
+    setRowNumber(undefined);
+  };
+
+  let screen = <StartGameScreen onStartGame={pickedNumberHandler} />;
+
+  if (rowNumber && columnNumber) {
+    screen = (
+      <GameScreen
+        rowNumber={rowNumber}
+        columnNumber={columnNumber}
+        onGameOver={gameOverHandler}
+      />
+    );
+  }
+
   return (
-    <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <StyledComponent className="flex-1 container bg-[#395164]" component={SafeAreaView}>
+      {screen}
+    </StyledComponent>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
