@@ -13,7 +13,7 @@ export default function GameScreen(props: any) {
     }
     else return "w-"+props.columnNumber+"/4"
   },[])
-  const [array] = useState<number[]>(generateArray(elements));
+  const [array,setArray] = useState<number[]>(generateArray(elements));
   const [selectedArray, setSelectedArray] = useState<number[]>([]);
   const [tempSelected, setTempSelected] = useState<number[]>([]);
   function generateArray(n: number): number[] {
@@ -31,6 +31,11 @@ export default function GameScreen(props: any) {
       setTempSelected([...tempSelected, index]);
     }
   };
+  const handleReset = () => () => {
+    setTempSelected([])
+    setSelectedArray([])
+    setArray(generateArray(elements))
+  }
   useEffect(() => {
     if (tempSelected.length === 2) {
       const firstNumber = array[tempSelected[0]];
@@ -101,7 +106,7 @@ export default function GameScreen(props: any) {
         ))}
       </StyledComponent>
       <StyledComponent component={View} tw="flex flex-row justify-center mt-2">
-        <StyledComponent component={Ripple} rippleContainerBorderRadius={50} tw="px-3 py-2 m-1 bg-rose-950 rounded-2xl" onPress={() => setSelectedArray([])}>
+        <StyledComponent component={Ripple} rippleContainerBorderRadius={50} tw="px-3 py-2 m-1 bg-rose-950 rounded-2xl" onPress={handleReset()}>
           <StyledComponent component={Text} tw="text-white text-center text-lg">
             Reset
           </StyledComponent>
