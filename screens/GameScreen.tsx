@@ -27,7 +27,7 @@ export default function GameScreen(props: any) {
     return tempArray;
   }
   const handlePress = (index: number) => () => {
-    if (tempSelected.length < 2) {
+    if (tempSelected.length < 2 && !tempSelected.includes(index)) {
       setTempSelected([...tempSelected, index]);
     }
   };
