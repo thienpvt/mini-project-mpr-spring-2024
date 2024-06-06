@@ -11,7 +11,7 @@ export default function GameScreen(props: any) {
     if(props.columnNumber===2){
       return "w-1/2"
     }
-    else return "w-"+props.columnNumber+"/4"
+    else if(props.columnNumber===3) return "w-5/6"
   },[])
   const [array,setArray] = useState<number[]>(generateArray(elements));
   const [selectedArray, setSelectedArray] = useState<number[]>([]);
@@ -80,9 +80,9 @@ export default function GameScreen(props: any) {
             component={View}
             tw="w-24 h-24 place-content-center justify-center">
             {selectedArray.includes(index) ? (
-              <StyledComponent component={View} tw="flex-1 m-1 bg-[#14362d] rounded-md border-2 justify-center">
-                <StyledComponent component={View} tw="w-1/2 h-1/2 mx-auto rounded border-[7px] border-yellow-700 justify-center">
-                  <StyledComponent component={Text} tw="text-yellow-700 text-center font-bold text-xl pb-1 mx-auto">
+              <StyledComponent component={View} tw="flex-1 m-1 bg-[#14362d] rounded-md border-2 justify-center items-center">
+                <StyledComponent component={View} tw="w-1/2 rounded border-[7px] border-yellow-700 text-center">
+                  <StyledComponent component={Text} tw="text-yellow-700 text-center font-bold text-xl">
                     x
                   </StyledComponent>
                 </StyledComponent>
