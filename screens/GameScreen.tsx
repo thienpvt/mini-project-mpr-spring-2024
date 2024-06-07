@@ -80,10 +80,10 @@ export default function GameScreen(props: any) {
             component={View}
             tw="w-24 h-24 place-content-center justify-center">
             {selectedArray.includes(index) ? (
-              <StyledComponent component={View} tw="flex-1 m-1 bg-[#14362d] rounded-md border-2 justify-center items-center">
-                <StyledComponent component={View} tw="w-1/2 rounded border-[7px] border-yellow-700 text-center">
-                  <StyledComponent component={Text} tw="text-yellow-700 text-center font-bold text-xl">
-                    x
+              <StyledComponent component={View} tw="flex-1 m-1 bg-[#14362d] rounded-md border-2 justify-center items-center content-center">
+                <StyledComponent component={View} tw="w-3/5 h-3/5 rounded border-[7px] border-yellow-700 text-center">
+                  <StyledComponent component={Text} tw="text-yellow-700 font-bold text-xl bg-slate-700 text-center flex-1 pt-1">
+                    X
                   </StyledComponent>
                 </StyledComponent>
               </StyledComponent>
